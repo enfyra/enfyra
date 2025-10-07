@@ -6,3 +6,7 @@
 	path = backend
 	url = https://github.com/enfyra/backend.git
 	branch = main
+[submodule "documents"]
+	path = documents
+	url = https://github.com/enfyra/documents.git
+	branch = main
