@@ -26,25 +26,10 @@
 
 ---
 
-## **WHY IS THIS WARNING CRITICAL?**
-
-Cloning and using this repository without proper understanding can lead to:
-
-- **CRITICAL DATA LOSS**
-- **SEVERE CONFIGURATION CONFLICTS**
-- **UNRECOVERABLE SYSTEM ERRORS**
-- **VIOLATION OF TEAM WORKFLOWS**
-- **SECURITY VULNERABILITIES**
-- **PRODUCTION ENVIRONMENT DAMAGE**
-
----
-
 ## **FIRST STEP: READ THE DOCS**
 
 ### Access the documentation at:
-```
-[Docs](https://github.com/enfyra/documents)
-```
+[**Documents**](https://github.com/enfyra/documents)
 
 ### MANDATORY sections to read:
 1. **Setup Guide** - Proper setup instructions
@@ -61,18 +46,6 @@ rm -rf [repository-name]
 
 # READ THE DOCUMENTATION FIRST
 # THEN FOLLOW THE OFFICIAL GUIDE
-```
-
----
-
-```
-╔═══════════════════════════════════════════════════════════════╗
-║                                                               ║
-║   ⚠️  REMEMBER: READ DOCS FIRST - CLONE LATER ⚠️             ║
-║                                                               ║
-║   📖 Documentation: https://github.com/enfyra/documents       ║                
-║                                                               ║
-╚═══════════════════════════════════════════════════════════════╝
 ```
 
 ---
