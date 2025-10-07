@@ -19,7 +19,7 @@
 - Install dependencies blindly
 
 ### **YOU MUST:**
-1. **READ THE COMPLETE DOCUMENTATION** at [docs](https://github.com/enfyra/documents)]
+1. **READ THE COMPLETE DOCUMENTATION** at [docs](https://github.com/enfyra/documents)
 2. **UNDERSTAND THE SYSTEM ARCHITECTURE** thoroughly
 3. **FOLLOW THE OFFICIAL GUIDE** step by step
 4. **CONTACT THE TEAM** if you have any questions
@@ -43,7 +43,7 @@ Cloning and using this repository without proper understanding can lead to:
 
 ### Access the documentation at:
 ```
-[Docs](https://github.com/enfyra/documents)]
+[Docs](https://github.com/enfyra/documents)
 ```
 
 ### MANDATORY sections to read:
