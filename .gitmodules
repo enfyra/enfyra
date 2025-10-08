@@ -2,9 +2,9 @@
 	path = app
 	url = https://github.com/enfyra/app.git
 	branch = main
-[submodule "backend"]
-	path = backend
-	url = https://github.com/enfyra/backend.git
+[submodule "server"]
+	path = server
+	url = https://github.com/enfyra/server.git
 	branch = main
 [submodule "documents"]
 	path = documents
