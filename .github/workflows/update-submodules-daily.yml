@@ -1,0 +1,158 @@
+name: Daily Submodule Update
+
+on:
+  # Run daily at 00:00 UTC
+  schedule:
+    - cron: '0 0 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
+          fetch-depth: 0
+      
+      - name: Configure Git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      
+      - name: Check current submodule versions
+        run: |
+          echo "📋 Current submodule commits:"
+          git submodule status
+      
+      - name: Update app to latest
+        id: update_app
+        run: |
+          cd app
+          OLD_COMMIT=$(git rev-parse HEAD)
+          git checkout main
+          git pull origin main
+          NEW_COMMIT=$(git rev-parse HEAD)
+          cd ..
+          
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "old=$OLD_COMMIT" >> $GITHUB_OUTPUT
+            echo "new=$NEW_COMMIT" >> $GITHUB_OUTPUT
+            echo "✅ App updated: $OLD_COMMIT → $NEW_COMMIT"
+          else
+            echo "updated=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ App is already up to date"
+          fi
+      
+      - name: Update server to latest
+        id: update_server
+        run: |
+          cd server
+          OLD_COMMIT=$(git rev-parse HEAD)
+          git checkout main
+          git pull origin main
+          NEW_COMMIT=$(git rev-parse HEAD)
+          cd ..
+          
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "old=$OLD_COMMIT" >> $GITHUB_OUTPUT
+            echo "new=$NEW_COMMIT" >> $GITHUB_OUTPUT
+            echo "✅ Server updated: $OLD_COMMIT → $NEW_COMMIT"
+          else
+            echo "updated=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Server is already up to date"
+          fi
+      
+      - name: Update documents to latest
+        id: update_documents
+        run: |
+          cd documents
+          OLD_COMMIT=$(git rev-parse HEAD)
+          git checkout main
+          git pull origin main
+          NEW_COMMIT=$(git rev-parse HEAD)
+          cd ..
+          
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "old=$OLD_COMMIT" >> $GITHUB_OUTPUT
+            echo "new=$NEW_COMMIT" >> $GITHUB_OUTPUT
+            echo "✅ Documents updated: $OLD_COMMIT → $NEW_COMMIT"
+          else
+            echo "updated=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Documents is already up to date"
+          fi
+      
+      - name: Commit changes
+        if: |
+          steps.update_app.outputs.updated == 'true' ||
+          steps.update_server.outputs.updated == 'true' ||
+          steps.update_documents.outputs.updated == 'true'
+        run: |
+          # Build commit message
+          echo "chore: update submodules to latest" > commit_msg.txt
+          echo "" >> commit_msg.txt
+          
+          if [ "${{ steps.update_app.outputs.updated }}" == "true" ]; then
+            echo "- app: ${{ steps.update_app.outputs.old }} → ${{ steps.update_app.outputs.new }}" >> commit_msg.txt
+          fi
+          
+          if [ "${{ steps.update_server.outputs.updated }}" == "true" ]; then
+            echo "- server: ${{ steps.update_server.outputs.old }} → ${{ steps.update_server.outputs.new }}" >> commit_msg.txt
+          fi
+          
+          if [ "${{ steps.update_documents.outputs.updated }}" == "true" ]; then
+            echo "- documents: ${{ steps.update_documents.outputs.old }} → ${{ steps.update_documents.outputs.new }}" >> commit_msg.txt
+          fi
+          
+          git add app server documents
+          git commit -F commit_msg.txt
+          git push
+      
+      - name: No updates needed
+        if: |
+          steps.update_app.outputs.updated != 'true' &&
+          steps.update_server.outputs.updated != 'true' &&
+          steps.update_documents.outputs.updated != 'true'
+        run: echo "✅ All submodules are already up to date!"
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📦 Submodule Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "| Submodule | Status | Old Commit | New Commit |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|------------|------------|" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.update_app.outputs.updated }}" == "true" ]; then
+            echo "| 🎨 app | ✅ Updated | \`${{ steps.update_app.outputs.old }}\` | \`${{ steps.update_app.outputs.new }}\` |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🎨 app | ℹ️ No change | - | - |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.update_server.outputs.updated }}" == "true" ]; then
+            echo "| 🚀 server | ✅ Updated | \`${{ steps.update_server.outputs.old }}\` | \`${{ steps.update_server.outputs.new }}\` |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🚀 server | ℹ️ No change | - | - |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.update_documents.outputs.updated }}" == "true" ]; then
+            echo "| 📚 documents | ✅ Updated | \`${{ steps.update_documents.outputs.old }}\` | \`${{ steps.update_documents.outputs.new }}\` |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 📚 documents | ℹ️ No change | - | - |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Current Status:**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          git submodule status >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+

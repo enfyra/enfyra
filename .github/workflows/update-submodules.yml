@@ -1,0 +1,61 @@
+name: Update Submodules
+
+on:
+  # Run every hour to check for updates
+  schedule:
+    - cron: '0 * * * *'
+  
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+          fetch-depth: 0
+      
+      - name: Update submodules to latest
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Update all submodules to latest commits on their main branch
+          git submodule update --remote --merge
+          
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No submodule updates available"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Submodule updates detected"
+          fi
+      
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          # Get changes info
+          git diff --submodule=log > changes.txt
+          
+          # Commit changes
+          git add -A
+          git commit -m "chore: update submodules to latest" -m "$(cat changes.txt)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Summary
+        run: |
+          echo "### Submodules Status" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          git submodule status >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
