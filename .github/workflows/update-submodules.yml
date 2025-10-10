@@ -29,6 +29,9 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
+          # Pull latest changes first
+          git pull origin main
+          
           # Update all submodules to latest commits on their main branch
           git submodule update --remote --merge
           

@@ -29,6 +29,10 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
       
+      - name: Pull latest changes
+        run: |
+          git pull origin main
+      
       - name: Check current submodule versions
         run: |
           echo "📋 Current submodule commits:"
