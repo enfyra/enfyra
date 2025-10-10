@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           submodules: true
           fetch-depth: 0
       
@@ -54,7 +54,7 @@ jobs:
           git commit -m "chore: update submodules to latest" -m "$(cat changes.txt)"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       
       - name: Summary
         run: |
