@@ -1,4 +1,11 @@
-Submodule app 87cc235..d6b5674:
-  > Merge pull request #34 from enfyra/fix/update-relations-component
-Submodule server ccf1dbb..0bb8284:
-  > Merge pull request #53 from enfyra/feature/knex-hooks-implementation
+Submodule app 15b2eeb..2dd26b2:
+  > Merge pull request #36 from enfyra/mongodb-support
+diff --git a/changes.txt b/changes.txt
+index 952a5c4..e69de29 100644
+--- a/changes.txt
++++ b/changes.txt
+@@ -1,4 +0,0 @@
+-Submodule app 87cc235..d6b5674:
+-  > Merge pull request #34 from enfyra/fix/update-relations-component
+-Submodule server ccf1dbb..0bb8284:
+-  > Merge pull request #53 from enfyra/feature/knex-hooks-implementation
