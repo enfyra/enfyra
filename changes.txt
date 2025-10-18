@@ -1,50 +1,57 @@
 diff --git a/changes.txt b/changes.txt
-index b987c79..e69de29 100644
+index daf1fae..e69de29 100644
 --- a/changes.txt
 +++ b/changes.txt
-@@ -1,43 +0,0 @@
+@@ -1,50 +0,0 @@
 -diff --git a/changes.txt b/changes.txt
--index d3a0006..e69de29 100644
+-index b987c79..e69de29 100644
 ---- a/changes.txt
 -+++ b/changes.txt
--@@ -1,36 +0,0 @@
---Submodule app edb909c..ea08476:
---  > Merge pull request #38 from enfyra/fix/mongodb-relation-picker
+-@@ -1,43 +0,0 @@
 --diff --git a/changes.txt b/changes.txt
---index 1f763f5..e69de29 100644
+--index d3a0006..e69de29 100644
 ----- a/changes.txt
 --+++ b/changes.txt
---@@ -1,27 +0,0 @@
----Submodule app 2dd26b2..edb909c:
----  > Merge pull request #37 from enfyra/fix/mongodb-relation-picker
+--@@ -1,36 +0,0 @@
+---Submodule app edb909c..ea08476:
+---  > Merge pull request #38 from enfyra/fix/mongodb-relation-picker
 ---diff --git a/changes.txt b/changes.txt
----index 9208901..e69de29 100644
+---index 1f763f5..e69de29 100644
 ------ a/changes.txt
 ---+++ b/changes.txt
----@@ -1,20 +0,0 @@
+---@@ -1,27 +0,0 @@
+----Submodule app 2dd26b2..edb909c:
+----  > Merge pull request #37 from enfyra/fix/mongodb-relation-picker
 ----diff --git a/changes.txt b/changes.txt
-----index 9a90486..e69de29 100644
+----index 9208901..e69de29 100644
 ------- a/changes.txt
 ----+++ b/changes.txt
-----@@ -1,11 +0,0 @@
------Submodule app 15b2eeb..2dd26b2:
------  > Merge pull request #36 from enfyra/mongodb-support
+----@@ -1,20 +0,0 @@
 -----diff --git a/changes.txt b/changes.txt
------index 952a5c4..e69de29 100644
+-----index 9a90486..e69de29 100644
 -------- a/changes.txt
 -----+++ b/changes.txt
------@@ -1,4 +0,0 @@
-------Submodule app 87cc235..d6b5674:
-------  > Merge pull request #34 from enfyra/fix/update-relations-component
-------Submodule server ccf1dbb..0bb8284:
-------  > Merge pull request #53 from enfyra/feature/knex-hooks-implementation
-----Submodule server 282a18a..a9297f2:
-----  > Merge pull request #57 from enfyra/fix/skip-knex-for-mongodb
-----  > Merge pull request #56 from enfyra/fix/skip-knex-for-mongodb
-----  > Merge pull request #55 from enfyra/feature/mongodb-support
---Submodule server a9297f2..f4237c8:
---  > Merge pull request #58 from enfyra/feat/mongodb-relations-improvements
--Submodule server f4237c8..9fadff5:
--  > Merge pull request #59 from enfyra/feat/n-plus-one-optimization
-Submodule documents df6f57e..7ffe1f0:
-  > Merge pull request #32 from enfyra/update/installation.md
+-----@@ -1,11 +0,0 @@
+------Submodule app 15b2eeb..2dd26b2:
+------  > Merge pull request #36 from enfyra/mongodb-support
+------diff --git a/changes.txt b/changes.txt
+------index 952a5c4..e69de29 100644
+--------- a/changes.txt
+------+++ b/changes.txt
+------@@ -1,4 +0,0 @@
+-------Submodule app 87cc235..d6b5674:
+-------  > Merge pull request #34 from enfyra/fix/update-relations-component
+-------Submodule server ccf1dbb..0bb8284:
+-------  > Merge pull request #53 from enfyra/feature/knex-hooks-implementation
+-----Submodule server 282a18a..a9297f2:
+-----  > Merge pull request #57 from enfyra/fix/skip-knex-for-mongodb
+-----  > Merge pull request #56 from enfyra/fix/skip-knex-for-mongodb
+-----  > Merge pull request #55 from enfyra/feature/mongodb-support
+---Submodule server a9297f2..f4237c8:
+---  > Merge pull request #58 from enfyra/feat/mongodb-relations-improvements
+--Submodule server f4237c8..9fadff5:
+--  > Merge pull request #59 from enfyra/feat/n-plus-one-optimization
+-Submodule documents df6f57e..7ffe1f0:
+-  > Merge pull request #32 from enfyra/update/installation.md
+Submodule server 99def36..23a5379:
+  > Merge pull request #62 from enfyra/fix/postgresql-compatibility-and-hooks
