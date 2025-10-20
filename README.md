@@ -1,13 +1,5 @@
 # ⚠️ WARNING - DO NOT CLONE THIS REPOSITORY ⚠️
 
-```
-╔═══════════════════════════════════════════════════════════════╗
-║                                                               ║
-║        🚨 DO NOT CLONE - IT WILL NOT WORK 🚨                 ║
-║                                                               ║
-╚═══════════════════════════════════════════════════════════════╝
-```
-
 ## 🛑 This Repository Will NOT Work If Cloned
 
 Cloning this repository directly will **NOT work**. You will encounter errors, and the application will not run.
