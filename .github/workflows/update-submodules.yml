@@ -17,43 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Setup SSH for submodules
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          
-          # Add server deploy key
-          echo "${{ secrets.SERVER_DEPLOY_KEY }}" > ~/.ssh/server_deploy_key
-          chmod 600 ~/.ssh/server_deploy_key
-          
-          # Add app deploy key
-          echo "${{ secrets.APP_DEPLOY_KEY }}" > ~/.ssh/app_deploy_key
-          chmod 600 ~/.ssh/app_deploy_key
-          
-          # Configure SSH to use these keys
-          cat >> ~/.ssh/config << EOF
-          Host github-server
-            HostName github.com
-            User git
-            IdentityFile ~/.ssh/server_deploy_key
-            StrictHostKeyChecking no
-          
-          Host github-app
-            HostName github.com
-            User git
-            IdentityFile ~/.ssh/app_deploy_key
-            StrictHostKeyChecking no
-          EOF
-          chmod 600 ~/.ssh/config
-      
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
-          submodules: false
+          submodules: true
           fetch-depth: 0
       
-      - name: Update submodules with SSH
+      - name: Update submodules to latest
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -61,10 +32,8 @@ jobs:
           # Pull latest changes first
           git pull origin main
           
-          # Update submodules using SSH
-          cd server && git remote set-url origin git@github-server:enfyra/server.git && git pull origin main && cd ..
-          cd app && git remote set-url origin git@github-app:enfyra/app.git && git pull origin main && cd ..
-          cd documents && git pull origin main && cd ..
+          # Update all submodules to latest commits on their main branch
+          git submodule update --remote --merge
       
       - name: Check for changes
         id: check_changes
