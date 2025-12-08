@@ -49,12 +49,9 @@ jobs:
       - name: Commit and push if changed
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
-          # Get changes info
-          git diff --submodule=log > changes.txt
-          
           # Commit changes
           git add -A
-          git commit -m "chore: update submodules to latest" -m "$(cat changes.txt)"
+          git commit -m "chore: update submodules to latest"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

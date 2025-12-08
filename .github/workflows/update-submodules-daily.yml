@@ -120,7 +120,7 @@ jobs:
             echo "- documents: ${{ steps.update_documents.outputs.old }} → ${{ steps.update_documents.outputs.new }}" >> commit_msg.txt
           fi
           
-          git add app server documents
+          git add -A
           git commit -F commit_msg.txt
           git push
       
