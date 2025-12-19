@@ -1,0 +1,4 @@
+chore: update submodules to latest
+
+- app: 86eacd137d1274de7f1903d200fc85624f48a116 → 34fc3c30c80ddd7effc3ecbba9f104dc6fb1e618
+- server: bf961cfb3eb9f925db995a01e638704dd3d87118 → b2319af953617377399690aff1cf6b44d6c75fa8
