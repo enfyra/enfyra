@@ -1,4 +1,3 @@
 chore: update submodules to latest
 
-- app: 458adea32b23def18d522de6dfbb54235f85e64b → cc574ccdcf390e5f2ab647fcaf47a21bf1454081
-- server: d0d1d748c3ab48850744a4b8dd19fff35879fd93 → f6606b85dcdb1359cac714bf680c002826985281
+- server: 26a02ddb0ede3787ac937bde7c237055ebef2782 → 3d600ea4ca9dbe3baa4fa508dbacd7dc9575fd9b
